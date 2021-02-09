@@ -1,1 +1,1 @@
-# tiny
+# A compressed image tool
