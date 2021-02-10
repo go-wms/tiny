@@ -1,6 +1,7 @@
 package image
 
 import (
+	"fmt"
 	"github.com/go-wms/tidy/file"
 	"github.com/nfnt/resize"
 	"golang.org/x/sync/errgroup"
@@ -22,8 +23,9 @@ func Reduce(imageUrls []string) (paths []string, err error) {
 			// 打开图片，并压缩，返回文件路径
 			newFilePath,err := ReduceImage(filePath)
 			if err != nil {
-				return nil
+				return err
 			}
+			fmt.Println(newFilePath)
 			paths = append(paths, newFilePath)
 			return nil
 		})
@@ -35,8 +37,10 @@ func Reduce(imageUrls []string) (paths []string, err error) {
 }
 
 func ReduceImage(filePath string) (string,error) {
-	openFile, err := os.Open(filePath)
+	openFile, err := os.Open("tmp/"+filePath)
+	fmt.Println(filePath)
 	if err != nil {
+		fmt.Println(err.Error())
 		return "", err
 	}
 	defer func() {
@@ -51,6 +55,7 @@ func ReduceImage(filePath string) (string,error) {
 
 	m := resize.Resize(uint(width), 0, img, resize.Lanczos3)
 	newFilePath := "resize/" + filePath
+	fmt.Println(newFilePath)
 	out, err := os.Create(newFilePath)
 	if err != nil {
 		return "", err

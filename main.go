@@ -1,15 +1,13 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"fmt"
+	"github.com/go-wms/tidy/image"
 )
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	_ = r.Run()
+	imageUrls := []string{"https://ae01.alicdn.com/kf/HTB1qVq4FxWYBuNjy1zkq6xGGpXaD.jpg"}
+	a,_ := image.Reduce(imageUrls)
+	fmt.Println(a)
+	//image.ReduceImage("tmp/HTB1qVq4FxWYBuNjy1zkq6xGGpXaD.jpg")
 }

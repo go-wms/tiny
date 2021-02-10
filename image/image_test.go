@@ -15,7 +15,12 @@ func TestReduce(t *testing.T) {
 		wantPaths []string
 		wantErr   bool
 	}{
-		// TODO: Add test cases.
+		{
+			name: "test1",
+			args: args{imageUrls: []string{"https://ae01.alicdn.com/kf/HTB1PSPIw4uTBuNkHFNRq6A9qpXau.jpg"}},
+			wantPaths: []string{""},
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -41,7 +46,12 @@ func TestReduceImage(t *testing.T) {
 		want    string
 		wantErr bool
 	}{
-		// TODO: Add test cases.
+		{
+			name: "test1",
+			args: args{filePath: ""},
+			want: "",
+			wantErr: false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
