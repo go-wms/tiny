@@ -6,8 +6,11 @@ import (
 )
 
 func main() {
-	imageUrls := []string{"https://ae01.alicdn.com/kf/HTB1qVq4FxWYBuNjy1zkq6xGGpXaD.jpg"}
-	a,_ := image.Reduce(imageUrls)
+	imageUrls := []string{"http://ae01.alicdn.com/kf/HTB1tEHzb.gQMeJjy0Ff762ddXXaF.png"}
+	a, err := image.Reduce(imageUrls)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 	fmt.Println(a)
 	//image.ReduceImage("tmp/HTB1qVq4FxWYBuNjy1zkq6xGGpXaD.jpg")
 }

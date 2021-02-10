@@ -6,7 +6,9 @@ import (
 	"github.com/nfnt/resize"
 	"golang.org/x/sync/errgroup"
 	"image"
+	_ "image/gif"
 	"image/jpeg"
+	_ "image/png"
 	"os"
 )
 
@@ -16,12 +18,12 @@ func Reduce(imageUrls []string) (paths []string, err error) {
 	for _, imageUrl := range imageUrls {
 		group.Go(func() error {
 			// 保存图片，获取图片路径
-			filePath,err := file.Save(imageUrl)
+			filePath, err := file.Save(imageUrl)
 			if err != nil {
 				return err
 			}
 			// 打开图片，并压缩，返回文件路径
-			newFilePath,err := ReduceImage(filePath)
+			newFilePath, err := ReduceImage(filePath)
 			if err != nil {
 				return err
 			}
@@ -30,14 +32,14 @@ func Reduce(imageUrls []string) (paths []string, err error) {
 			return nil
 		})
 	}
-	if err := group.Wait(); err!=nil {
+	if err := group.Wait(); err != nil {
 		return nil, err
 	}
 	return
 }
 
-func ReduceImage(filePath string) (string,error) {
-	openFile, err := os.Open("tmp/"+filePath)
+func ReduceImage(filePath string) (string, error) {
+	openFile, err := os.Open("tmp/" + filePath)
 	fmt.Println(filePath)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -49,6 +51,7 @@ func ReduceImage(filePath string) (string,error) {
 
 	img, _, err := image.Decode(openFile)
 	if err != nil {
+		fmt.Println(123, err.Error())
 		return "", err
 	}
 	width := img.Bounds().Dx()

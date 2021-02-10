@@ -16,10 +16,10 @@ func TestReduce(t *testing.T) {
 		wantErr   bool
 	}{
 		{
-			name: "test1",
-			args: args{imageUrls: []string{"https://ae01.alicdn.com/kf/HTB1PSPIw4uTBuNkHFNRq6A9qpXau.jpg"}},
+			name:      "test1",
+			args:      args{imageUrls: []string{"https://ae01.alicdn.com/kf/HTB1PSPIw4uTBuNkHFNRq6A9qpXau.jpg"}},
 			wantPaths: []string{""},
-			wantErr: false,
+			wantErr:   false,
 		},
 	}
 	for _, tt := range tests {
@@ -47,9 +47,9 @@ func TestReduceImage(t *testing.T) {
 		wantErr bool
 	}{
 		{
-			name: "test1",
-			args: args{filePath: ""},
-			want: "",
+			name:    "test1",
+			args:    args{filePath: ""},
+			want:    "",
 			wantErr: false,
 		},
 	}

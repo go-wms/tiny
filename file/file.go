@@ -7,22 +7,22 @@ import (
 	"path"
 )
 
-func Save(imageUrl string) (string ,error) {
+func Save(imageUrl string) (string, error) {
 	fileName := path.Base(imageUrl)
 	res, err := http.Get(imageUrl)
 	if err != nil {
-		return "",err
+		return "", err
 	}
-	filePathName := "tmp/"+fileName
+	filePathName := "tmp/" + fileName
 	file, err := os.Create(filePathName)
 	if err != nil {
-		return "",err
+		return "", err
 	}
-	_,err = io.Copy(file, res.Body)
+	_, err = io.Copy(file, res.Body)
 	if err != nil {
-		return "",err
+		return "", err
 	}
-	return fileName,nil
+	return fileName, nil
 
 	//
 	//res, err := http.Get(imageUrl)
